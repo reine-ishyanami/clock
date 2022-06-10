@@ -13,7 +13,7 @@ public class CustomService extends Service<LocalTime> {
 
     @Override
     protected Task<LocalTime> createTask() {
-        return new Task<>() {
+        return new Task<LocalTime>() {
             @Override
             protected LocalTime call() throws Exception {
                 while (true) {
