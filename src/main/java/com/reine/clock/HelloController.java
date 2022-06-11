@@ -16,9 +16,13 @@ public class HelloController implements Initializable {
     @FXML
     private Label timeLabel;
 
-
     private CustomService customService;
 
+    /**
+     * 开启计时器
+     *
+     * @param event 鼠标点击事件
+     */
     @FXML
     void refreshTime(ActionEvent event) {
         customService.restart();
@@ -29,6 +33,22 @@ public class HelloController implements Initializable {
         }));
     }
 
+    /**
+     * 暂停计时器
+     *
+     * @param event 鼠标点击事件
+     */
+    @FXML
+    void stopTime(ActionEvent event) {
+        customService.cancel();
+    }
+
+    /**
+     * 初始化
+     *
+     * @param location  fxml资源文件路径
+     * @param resources 国际化语言设置
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         customService = new CustomService();

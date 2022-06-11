@@ -16,9 +16,10 @@ public class CustomService extends Service<LocalTime> {
         return new Task<LocalTime>() {
             @Override
             protected LocalTime call() throws Exception {
-                while (true) {
+                while (!isCancelled()) {
                     this.updateValue(LocalTime.now());
                 }
+                return LocalTime.now();
             }
         };
     }
