@@ -9,11 +9,13 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class HelloApplication extends Application {
+public class ClockApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(this.getClass().getClassLoader().getResource("fxml/clock-view.fxml"));
         BorderPane root = fxmlLoader.load();
+        root.getStylesheets().add(this.getClass().getClassLoader().getResource("css/clock.css").toExternalForm());
         Scene scene = new Scene(root);
         stage.setTitle("LocalTime");
         stage.setScene(scene);

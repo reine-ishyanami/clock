@@ -1,0 +1,21 @@
+BorderPane {
+    -fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 0.0%, #fcdfe8ff 0.0%, #b6fefcff 100.0%);
+}
+
+Label{
+    -fx-font-size: 55;
+    -fx-font-smoothing-type: smooth;
+    -fx-text-fill: #ff6666;
+}
+
+Button {
+    -fx-background-color: #ffcccc;
+    -fx-background-radius: 10;
+    -fx-font-size: 16;
+}
+
+Button:hover {
+    -fx-background-color: #ccccff;
+    -fx-border-radius: 10;
+    -fx-border-color: #ccffcc;
+}

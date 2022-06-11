@@ -1,17 +1,19 @@
-package com.reine.clock;
+package com.reine.clock.controller;
 
 import com.reine.clock.job.CustomService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class HelloController implements Initializable {
+public class ClockController implements Initializable {
 
     @FXML
     private Label timeLabel;
@@ -28,7 +30,8 @@ public class HelloController implements Initializable {
         customService.restart();
         customService.valueProperty().addListener(((observable, oldValue, newValue) -> {
             Optional.ofNullable(newValue).ifPresent(value -> {
-                timeLabel.setText(value.format(DateTimeFormatter.ofPattern("hh:mm:ss.SSS")));
+                // 使用24小时制，输出格式 时:分:秒.毫秒
+                timeLabel.setText(value.format(DateTimeFormatter.ofPattern("HH:mm:ss.SSS")));
             });
         }));
     }
@@ -53,4 +56,18 @@ public class HelloController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         customService = new CustomService();
     }
+
+    @FXML
+    public void top(ActionEvent actionEvent) {
+        Button setTop = (Button) actionEvent.getSource();
+        Stage window = (Stage) setTop.getParent().getScene().getWindow();
+        if (setTop.getUserData() == null) {
+            setTop.setUserData(false);
+        }
+        boolean isTop = (boolean) setTop.getUserData();
+        window.setAlwaysOnTop(!isTop);
+        setTop.setUserData(!isTop);
+
+    }
+
 }
